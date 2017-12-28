@@ -1,0 +1,30 @@
+/* flexible laytou */
+/* width is greater than 800 */
+@media screen and (min-width: 800px) {
+    .is-pc {
+        display: block;
+    }
+
+    .is-mobile {
+        display: none;
+    }
+}
+
+/* width is less than 800 */
+@media screen and (max-width: 800px) {
+    .is-pc {
+        display: none;
+    }
+
+    .is-mobile {
+        display: block;
+    }
+}
+
+.motto-font {
+    font-family: sacramento, cursive;
+}
+
+.white-bg {
+    background-color: white;
+}

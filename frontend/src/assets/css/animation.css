@@ -1,0 +1,13 @@
+.dropdown-enter-active, .dropdown-leave-active {
+  transition: all .5s;
+}
+
+.dropdown-enter, .dropdown-leave-to {
+  height: 0;
+  opacity: 0;
+}
+
+.dropdown-enter-to, .dropdown-leave {
+  height: auto;
+  opacity: 1;
+}
