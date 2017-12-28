@@ -1,7 +1,7 @@
 <template>
   <div class="mobile-nav-container">
       <div @click="dropdown" class="name motto-font">
-          <span>Haixiang Yan</span>
+          <span class="motto-font">Haixiang Yan</span>
           <i v-bind:class="['fa', {'fa-angle-down': !isShow , 'fa-angle-up': isShow}]" aria-hidden="true"></i>
       </div>
 

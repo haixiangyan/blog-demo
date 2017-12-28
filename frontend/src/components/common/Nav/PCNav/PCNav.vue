@@ -1,10 +1,10 @@
 <template>
   <div class="pc-nav-container">
-      <div class="name motto-font">
-          <span>Haixiang Yan</span>
+      <div class="name">
+          <span class="motto-font">Haixiang Yan</span>
       </div>
 
-      <nav>
+      <nav class="max-container">
           <router-link to="/" class="nav-item" tag="div">Home</router-link>
           <router-link to="/blog" class="nav-item" tag="div">Blog</router-link>
           <router-link to="/about" class="nav-item" tag="div">About</router-link>
@@ -33,7 +33,6 @@ export default {
 /* Navigation CSS style */
 nav {
   margin: 0 auto;
-  width: 70%;
   display: flex;
   justify-content: space-around;
 }

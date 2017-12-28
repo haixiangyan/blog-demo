@@ -33,7 +33,7 @@ export default {
 
 <style scoped>
 .motto {
-  margin: 160px 0;
+  margin: 180px 0;
   text-align: center;
   font-size: 4em;
 }
