@@ -57,7 +57,7 @@
  * Font
  */
 div, p, span, a, h1, h2, h3, h4, h5 {
-    font-family: helvetica-w01-light, helvetica-w02-light, sans-serif;
+    font-family: "libre baskerville", helvetica-w01-light, helvetica-w02-light, sans-serif;
 }
 
 .motto-font {
@@ -70,6 +70,22 @@ div, p, span, a, h1, h2, h3, h4, h5 {
 
 .sub-title-font {
     font-family: "libre baskerville", serif;
+}
+
+.danger-font-color {
+    color: #F56C6C;
+}
+
+.success-font-color {
+    color: #67C23A;
+}
+
+.warning-font-color {
+    color: #E6A23C;
+}
+
+.info-font-color {
+    color: #909399;
 }
 
 /**

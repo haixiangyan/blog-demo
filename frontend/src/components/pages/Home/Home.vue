@@ -8,6 +8,9 @@
 
         <!-- Introduction of Blog -->
         <blog-intro></blog-intro>
+
+        <!-- Footer -->
+        <blog-footer></blog-footer>
     </div>
 </template>
 
@@ -17,6 +20,8 @@ import BlogBase from "@/components/common/Base/Base";
 
 // Import Intro component
 import BlogIntro from "@/components/pages/Home/Intro/Intro";
+// Import Footer component
+import BlogFooter from "@/components/common/Footer/Footer";
 
 export default {
   name: "home",
@@ -26,7 +31,8 @@ export default {
   components: {
     BlogNav: BlogNav,
     BlogBase: BlogBase,
-    BlogIntro: BlogIntro
+    BlogIntro: BlogIntro,
+    BlogFooter: BlogFooter,
   }
 };
 </script>
