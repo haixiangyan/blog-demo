@@ -1,34 +1,51 @@
 <template>
   <div :class="['social-container', {inverse: isInverse}]">
     <!-- wechat account -->
-    <router-link to="/">
-      <i class="fa fa-weixin" aria-hidden="true"></i>
-    </router-link>
+    <div class="social-wechat social-item">
+      <router-link to="/">
+        <i class="fa fa-weixin" aria-hidden="true"></i>
+      </router-link>
+
+      <!-- qr image -->
+      <img class="wechat-qr-img" :src="wechatQrSrc" alt="Wechat qr image">
+    </div>
 
     <!-- qq account -->
-    <router-link to="/">
-      <i class="fa fa-qq" aria-hidden="true"></i>
-    </router-link>
+    <div class="social-qq social-item">
+      <router-link  to="/">
+        <i class="fa fa-qq" aria-hidden="true"></i>
+      </router-link>
+
+      <!-- qr image -->
+      <img class="qq-qr-img" :src="qqQrSrc" alt="QQ qr image">
+    </div>
 
     <!-- linkedin account -->
-    <router-link to="/">
+    <a class="social-item" href="https://www.linkedin.com/in/%E6%B5%B7%E7%BF%94-%E4%B8%A5-0b9744150/" target="_blank">
       <i class="fa fa-linkedin" aria-hidden="true"></i>
-    </router-link>
+    </a>
 
     <!-- facebook account -->
-    <router-link to="/">
+    <a class="social-item" href="https://www.facebook.com/yan.haixiang" target="_blank">
       <i class="fa fa-facebook" aria-hidden="true"></i>
-    </router-link>
+    </a>
     
-    <router-link to="/">
+    <!-- twitter account -->
+    <a class="social-item" href="https://twitter.com/HaixiangYan" target="_blank">
       <i class="fa fa-twitter" aria-hidden="true"></i>
-    </router-link>
+    </a>
     
   </div>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      qqQrSrc: '/static/img/social/qq_qr.jpg',
+      wechatQrSrc: '/static/img/social/wechat_qr.jpg',
+    };
+  },
   props: {
     isInverse: Boolean
   }
@@ -38,18 +55,43 @@ export default {
 <style scoped>
 .social-container {
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* inverse style */
-.inverse i {
+.social-item {
+  padding: 0 10px;
+}
+
+.social-item i {
   color: white;
+  font-size: 1.4em;
 }
 
-a {
-  padding: 7px;
+/* wechat and qq social style */
+.social-wechat,
+.social-qq {
+  position: relative;
 }
 
-i {
-  font-size: 1.5em;
+/* wechat and qq qr code style */
+.wechat-qr-img,
+.qq-qr-img {
+  visibility: hidden;
+  position: absolute;
+  bottom: 100%;
+  left: -150%;
+  opacity: 0;
+  max-width: 170px;
+  transition: all .35s;
+}
+
+/* wechat qr image */
+.social-wechat:hover > .wechat-qr-img,
+.social-qq:hover > .qq-qr-img {
+  opacity: 1;
+  visibility: visible;
 }
 </style>

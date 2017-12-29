@@ -77,7 +77,7 @@ export default {
 
 /* social component style */
 .social-comp {
-  margin: 40px auto 20px;
+  margin: 30px auto;
 }
 
 /* brand style */
