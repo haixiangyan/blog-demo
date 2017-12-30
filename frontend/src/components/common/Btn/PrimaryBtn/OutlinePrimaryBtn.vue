@@ -4,7 +4,7 @@
       {{title}}
     </router-link>
 
-    <button @click="click" v-else class="inverse-btn">
+    <button @click="click" v-else :class="['inverse-btn', {'flexsible-width': isFlexsible}]">
       {{title}}
     </button>
   </div>
@@ -16,12 +16,20 @@ export default {
     title: String,
     link: String,
     click: Function,
+    isFlexsible: {
+      type: Boolean,
+      default: true
+    }
   }
 }
 </script>
 
 <style scoped>
-.inverse-btn-container {
+@media screen and (max-width: 640px) {
+  .inverse-btn-container,
+  .flexsible-width {
+    width: 100%;
+  }
 }
 
 .inverse-btn {

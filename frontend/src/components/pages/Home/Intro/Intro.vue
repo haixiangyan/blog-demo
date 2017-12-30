@@ -3,7 +3,7 @@
       <div class="max-container intro-container">
 
         <!-- First column -->
-        <div class="column">
+        <div class="column flexible-column">
           <!-- blog part -->
           <div class="intro-blog">
             <p class="intro-item-header motto-font">Read</p>
@@ -20,7 +20,7 @@
         </div>
 
         <!-- Second column -->
-        <div class="column">
+        <div class="column flexible-column">
           <!-- talk part -->
           <div class="intro-talk">
             <p class="intro-item-header motto-font">Talk</p>
@@ -61,8 +61,6 @@ export default {
 
 .column {
   padding: 20px 0;
-  width: 45%;
-  min-width: 400px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -96,7 +94,7 @@ export default {
 
 .intro-blog > .intro-item-header,
 .intro-contact > .intro-item-header {
-  margin-top: 40%;
+  margin-top: 180px;
 }
 
 .intro-blog > .intro-item-body,
@@ -106,11 +104,11 @@ export default {
 
 /* intro talk styles */
 .intro-about {
-  margin-top: 5%;
+  margin-top: 30px;
 }
 
 .intro-talk {
-  margin-bottom: 5%;
+  margin-bottom: 30px;
 }
 
 /* intro talk and about contact styles */
@@ -129,7 +127,7 @@ export default {
 
 .intro-talk > .intro-item-header,
 .intro-about > .intro-item-header {
-  margin-top: 15%;
+  margin-top: 40px;
 }
 
 .intro-talk > .intro-item-body,

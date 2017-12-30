@@ -21,17 +21,17 @@
     </div>
 
     <!-- linkedin account -->
-    <a class="social-item" href="https://www.linkedin.com/in/%E6%B5%B7%E7%BF%94-%E4%B8%A5-0b9744150/" target="_blank">
+    <a class="social-item" :href="linkedinAddr" target="_blank">
       <i class="fa fa-linkedin" aria-hidden="true"></i>
     </a>
 
     <!-- facebook account -->
-    <a class="social-item" href="https://www.facebook.com/yan.haixiang" target="_blank">
+    <a class="social-item" :href="fbAddr" target="_blank">
       <i class="fa fa-facebook" aria-hidden="true"></i>
     </a>
     
     <!-- twitter account -->
-    <a class="social-item" href="https://twitter.com/HaixiangYan" target="_blank">
+    <a class="social-item" :href="twitterAddr" target="_blank">
       <i class="fa fa-twitter" aria-hidden="true"></i>
     </a>
     
@@ -44,6 +44,9 @@ export default {
     return {
       qqQrSrc: '/static/img/social/qq_qr.jpg',
       wechatQrSrc: '/static/img/social/wechat_qr.jpg',
+      linkedinAddr: 'https://www.linkedin.com/in/%E6%B5%B7%E7%BF%94-%E4%B8%A5-0b9744150/',
+      fbAddr: 'https://www.facebook.com/yan.haixiang',
+      twitterAddr: 'https://twitter.com/HaixiangYan',
     };
   },
   props: {

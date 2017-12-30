@@ -1,7 +1,7 @@
 <template>
   <div class="input-container">
     <div :class="['input-box', {'in-valid': !isValid}]">
-      <input :style="{ width: width +'px' }" 
+      <input :style="{ width: flexWidth }" 
             :type="type" :value="inputValue" 
             :placeholder="placeholder" 
             @input="handleInput">
@@ -21,6 +21,17 @@ export default {
       // Define is validate
       isValid: this.initValid,
     };
+  },
+
+  computed: {
+    flexWidth() {
+      if (document.body.clientWidth > this.width)  {
+        return `${this.width}px`;
+      }
+      else {
+        return `90%`;
+      }
+    }
   },
 
   props: {
@@ -70,6 +81,12 @@ export default {
 </script>
 
 <style scoped>
+@media screen and (max-width: 640px) {
+  .input-container {
+    width: 100%;
+  }
+}
+
 /* input container */
 .input-box {
   padding: 9px;

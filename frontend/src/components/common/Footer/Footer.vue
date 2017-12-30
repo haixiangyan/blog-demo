@@ -7,7 +7,7 @@
       <!-- subscribe -->
       <div class="subscribe">
         <!-- input box -->
-        <blog-input class="subscribe-input" v-model="email" type="email" placeholder="Email Address" :width="370"></blog-input>
+        <blog-input class="subscribe-input" v-model="email" type="email" placeholder="Email Address" :width="450"></blog-input>
         
         <!-- scribe button -->
         <blog-outline-primary-btn :click="subscribe" link="" class="subscribe-btn" title="Subscribe"></blog-outline-primary-btn>
@@ -58,8 +58,9 @@ export default {
 .join-title {
   text-align: center;
   color: white;
-  font-size: 1.7em;
+  font-size: 2em;
   line-height: 1.4em;
+  font-family: "libre baskerville", serif;
 }
 
 /* subscribe */

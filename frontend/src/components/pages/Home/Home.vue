@@ -1,6 +1,7 @@
 <template>
     <div>
         <blog-nav></blog-nav>
+
         <blog-base></blog-base>
 
         <!-- Motto -->
@@ -8,6 +9,9 @@
 
         <!-- Introduction of Blog -->
         <blog-intro></blog-intro>
+
+        <!-- Recent blogs part -->
+        <blog-recent-blogs></blog-recent-blogs>
 
         <!-- Footer -->
         <blog-footer></blog-footer>
@@ -17,11 +21,9 @@
 <script>
 import BlogNav from "@/components/common/Nav/Nav";
 import BlogBase from "@/components/common/Base/Base";
-
-// Import Intro component
 import BlogIntro from "@/components/pages/Home/Intro/Intro";
-// Import Footer component
 import BlogFooter from "@/components/common/Footer/Footer";
+import BlogRecentBlogs from "@/components/pages/Home/RecentBlogs/RecentBlogs"
 
 export default {
   name: "home",
@@ -33,6 +35,7 @@ export default {
     BlogBase: BlogBase,
     BlogIntro: BlogIntro,
     BlogFooter: BlogFooter,
+    BlogRecentBlogs: BlogRecentBlogs,
   }
 };
 </script>
