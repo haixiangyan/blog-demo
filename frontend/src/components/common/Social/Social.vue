@@ -1,5 +1,5 @@
 <template>
-  <div :class="['social-container', {inverse: isInverse}]">
+  <div :class="['social-container', {'inverse': isInverse, 'not-inverse': !isInverse}]">
     <!-- wechat account -->
     <div class="social-wechat social-item">
       <router-link to="/">
@@ -50,7 +50,10 @@ export default {
     };
   },
   props: {
-    isInverse: Boolean
+    isInverse: {
+      type: Boolean,
+      default: false
+    }
   }
 }
 </script>
@@ -64,12 +67,19 @@ export default {
 }
 
 /* inverse style */
+.inverse i {
+  color: black;
+}
+
+.not-inverse i {
+  color: white;
+}
+
 .social-item {
   padding: 0 10px;
 }
 
 .social-item i {
-  color: white;
   font-size: 1.4em;
 }
 

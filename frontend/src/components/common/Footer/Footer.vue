@@ -14,7 +14,7 @@
       </div>
 
       <!-- social part -->
-      <blog-social class="social-comp" :isInverse="true"></blog-social>
+      <blog-social class="social-comp"></blog-social>
     </div>
 
     <!-- brand -->
