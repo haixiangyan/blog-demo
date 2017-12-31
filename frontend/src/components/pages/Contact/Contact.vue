@@ -1,0 +1,176 @@
+<template>
+    <div class="contact-page">
+
+        <blog-nav></blog-nav>
+
+        <blog-base></blog-base>
+
+        <div class="contact-container light-blue-bg">
+          <div class="contact-wrapper max-container">
+            <p class="contact-title">CONTACT</p>
+
+            <img class="contact-img" :src="contactIntro.introImg" alt="Contact image">
+
+            <p >Be in touch</p>
+
+            <div class="intro-content normal-font-color pharagraph-font">
+              {{contactIntro.introContent}}
+            </div>
+
+            <form class="contact-form">
+              <blog-input name="name" :required="true" @validation="handleValidation" v-model="contactForm.name" class="input-item" placeholder="Name"></blog-input>
+              <blog-input name="email" :required="true" @validation="handleValidation" v-model="contactForm.email" type="email" class="input-item" placeholder="Email"></blog-input>
+              <blog-input name="subject" :required="true" @validation="handleValidation" v-model="contactForm.subject" class="input-item" placeholder="Subject"></blog-input>
+
+              <blog-textarea name="message" @validation="handleValidation" :required="true" v-model="contactForm.message" class="input-item" placeholder="Message" :rows="5"></blog-textarea>
+            </form>
+
+            <blog-primary-btn :click="send" title="Send"></blog-primary-btn>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <blog-footer></blog-footer>
+    </div>
+</template>
+
+<script>
+import BlogNav from "@/components/common/Nav/Nav";
+import BlogBase from "@/components/common/Base/Base";
+import BlogFooter from "@/components/common/Footer/Footer";
+import BlogInput from '@/components/common/Form/Input/Input';
+import BlogTextarea from '@/components/common/Form/TextArea/TextArea';
+import BlogPrimaryBtn from '@/components/common/Btn/PrimaryBtn/PrimaryBtn';
+
+export default {
+  name: "about",
+
+  data() {
+    return {
+      contactIntro: {
+        introImg: '/static/img/contact/contact.jpg',
+        introContent: `I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font. I’m a great place for you to tell a story and let your users know a little more about you.`
+      },
+      contactForm: {
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+      },
+      formValidation: {
+        name: false,
+        email: false,
+        subject: false,
+        message: false
+      }
+    };
+  },
+
+  components: {
+    BlogNav: BlogNav,
+    BlogBase: BlogBase,
+    BlogInput: BlogInput,
+    BlogTextarea: BlogTextarea,
+    BlogFooter: BlogFooter,
+    BlogPrimaryBtn: BlogPrimaryBtn
+  },
+
+  methods: {
+    // Method to validate the form data
+    validateForm() {
+      // Iterate values of formValidation
+      for (let value of Object.values(this.formValidation)) {
+        if (!value) {
+          return false;
+        }
+      }
+      
+      return true;
+    },
+
+    // send contact information to backend
+    send() {
+      if (!this.validateForm()) {
+        console.error('In valid form');
+        return ;
+      }
+
+      this.$axios({
+        method: 'post',
+        url: '/contact',
+        data: {
+          contactForm: this.contactForm
+        }
+      })
+      .then((response) => {
+        let data = response.data;
+        if(data.type === 'success') {
+          console.log('success');
+        }
+        else {
+          console.error(data.msg)
+        }
+      })
+    },
+
+    // Handle validation of different input boxes
+    handleValidation(name, isValid) {
+      this.formValidation[name] = isValid;
+    }
+  }
+};
+</script>
+
+<style scoped>
+@media screen and (min-width: 640px) {
+  .contact-container {
+    margin-top: 180px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .contact-container {
+    margin-top: 80px;
+  }
+}
+
+.contact-wrapper {
+  padding: 60px 0;
+  text-align: center;
+}
+
+/* contact image style */
+.contact-img {
+  text-align: center;
+  margin: 30px 0;
+  max-width: 80%;
+}
+
+/* contact title style */
+.contact-container p {
+  font-size: 2em;
+  font-family: "libre baskerville", serif;
+}
+
+.contact-title {
+  letter-spacing: 0.2em;
+}
+
+/* intro content style */
+.intro-content {
+  max-width: 80%;
+  margin: 10px auto;
+  text-align: center;
+}
+
+/* contact form style */
+.contact-form {
+  text-align: left;
+}
+
+/* input item style */
+.input-item {
+  margin: 0 auto;
+  width: 470px;
+}
+</style>

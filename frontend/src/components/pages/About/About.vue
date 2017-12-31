@@ -6,7 +6,7 @@
 
         <div class="introduction-container light-blue-bg ">
           <div class="introduction-wrapper max-container">
-            <span class="about-title">ABOUT ME</span>
+            <p class="about-title">ABOUT ME</p>
 
             <img :src="aboutMe.introImg" alt="" class="intro-img">
 
@@ -84,6 +84,7 @@ export default {
 
 /* Introduction image */
 .introduction-wrapper .intro-img {
+  text-align: center;
   margin: 30px 0;
   max-width: 80%;
 }

@@ -1,12 +1,12 @@
 <template>
-  <div class="black-btn-container">
+  <div :class="['black-btn-container', {'max-width': isMaxWidth}]">
     <!-- link mode -->
-    <router-link v-if="link" class="black-btn" :to="link">
+    <router-link v-if="link" :class="['black-btn', {'max-width': isMaxWidth}]" :to="link">
       {{title}}
     </router-link>
 
     <!-- button mode -->
-    <button v-if="!link" class="black-btn" @click="click">
+    <button v-if="!link" :class="['black-btn', {'max-width': isMaxWidth}]" @click="click">
       {{title}}
     </button>
   </div>
@@ -18,6 +18,10 @@ export default {
     link: String,
     title: String,
     click: Function,
+    isMaxWidth: {
+      type: Boolean,
+      default: false
+    }
   }
 }
 </script>
@@ -36,11 +40,16 @@ export default {
   background: rgb(213, 239, 254);
 }
 
+.max-width {
+  width: 100%;
+}
+
 button {
   color: white;
   background: black;
   cursor: pointer;
   font-size: 1em;
   outline: none;
+  border: none;
 }
 </style>

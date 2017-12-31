@@ -7,41 +7,66 @@
             @input="handleInput">
     </div>
     <div class="input-tips">
-      <p v-show="!isValid" class="danger-font-color">Please fill in a valid email address</p>
+      <p v-show="!isValid" class="danger-font-color">{{inValidMsg}}</p>
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  props: {
+    type: {
+      type: String,
+      default: 'text'
+    },
+    required: {
+      type: Boolean,
+      default: false,
+    },
+    name: {
+      type: String,
+      default: ''
+    },
+    value: {
+      type: [String, Number],
+      default: ''
+    },
+    placeholder: {
+      type: String,
+      default: ''
+    },
+    width: {
+      type: Number,
+      default: 100
+    },
+    initValid: {
+      type: Boolean,
+      default: true,
+    }
+  },
+
   data() {
     return {
       // Initialize input value
       inputValue: this.value,
       // Define is validate
       isValid: this.initValid,
+      // Invalid message
+      inValidMsg: ''
     };
   },
 
   computed: {
     flexWidth() {
-      if (document.body.clientWidth > this.width)  {
+      if (this.width <= 100)  {
+        return `${this.width}%`;
+      }
+      else if (document.body.clientWidth > this.width) {
         return `${this.width}px`;
       }
       else {
         return `90%`;
       }
-    }
-  },
-
-  props: {
-    type: [String],
-    value: [String, Number],
-    placeholder: [String],
-    width: Number,
-    initValid: {
-      type: Boolean,
-      default: true,
     }
   },
 
@@ -65,16 +90,29 @@ export default {
   watch: {
     // Watch inputValue to validate input
     inputValue(newValue) {
-      console.log(this.type)
+      // check required validation
+      if(this.required) {
+        if(!newValue) {
+          this.isValid = false;
+          this.inValidMsg = `Shouldn't be empty. `
+        }
+        else {
+          this.isValid = true;
+          this.inValidMsg = ``
+        }
+      }
+
+      // Check different type validation
       switch(this.type) {
         case 'email':
           this.isValid = this.validateEmail(newValue);
+          this.inValidMsg = 'Please fill in valid email address.'
           break;
         default:
       }
 
       // Pass isValid value to parent component
-      this.$emit('validation', this.isValid);
+      this.$emit('validation', this.name, this.isValid);
     }
   }
 }
@@ -89,9 +127,9 @@ export default {
 
 /* input container */
 .input-box {
-  padding: 9px;
+  padding: 11px;
   background: white;
-  border: 2px solid white;
+  border: 1px solid black;
 }
 
 .input-box input {

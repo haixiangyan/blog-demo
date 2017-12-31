@@ -1,6 +1,6 @@
 import Mock from 'mockjs';
 
-export const aboutMe = [
+export const about = [
   {
     path: '/about',
     type: 'get',
