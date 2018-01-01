@@ -2,10 +2,14 @@ import Mock from 'mockjs';
 
 import { about } from './models/about';
 import { contact } from './models/contact';
+import { subscribe } from './models/subscribe';
+import { blogItems } from './models/blogItems';
 
 let data = [].concat(
   about,
-  contact
+  contact,
+  subscribe,
+  blogItems
 )
 
 data.forEach((res) => {

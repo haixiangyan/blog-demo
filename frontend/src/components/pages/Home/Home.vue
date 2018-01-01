@@ -23,7 +23,7 @@ import BlogNav from "@/components/common/Nav/Nav";
 import BlogBase from "@/components/common/Base/Base";
 import BlogIntro from "@/components/pages/Home/Intro/Intro";
 import BlogFooter from "@/components/common/Footer/Footer";
-import BlogRecentBlogs from "@/components/pages/Home/RecentBlogs/RecentBlogs"
+import BlogRecentBlogs from "@/components/pages/Home/RecentBlogs/RecentBlogs";
 
 export default {
   name: "home",

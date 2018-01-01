@@ -1,38 +1,50 @@
 <template>
   <div class="recent-blogs-container light-blue-bg">
-    <div class="max-container blog-items-container white-bg">
-      <blog-item class="blog-item-comp" :blogItem="blogItem" :isRow="false"></blog-item>
+
+    <blog-loading v-if="isLoading"></blog-loading>
+
+    <div v-if="!isLoading" class="max-container blog-items-container">
+      <blog-item v-for="blogItem in blogItems" :key="blogItem.blogInfo.timestamp" class="blog-item-comp" :blogItem="blogItem" :isRow="false"></blog-item>
     </div>
   </div>
 </template>
 
 <script>
 import BlogItem from "@/components/common/BlogItem/BlogItem";
+import BlogLoading from "@/components/common/Loading/Loading";
+
 export default {
   data() {
     return {
-      blogItem: {
-        imgSrc: "/static/img/blogs/blog_1.jpg",
-        authorInfo: {
-          avatar: "/static/img/utils/avatar.jpg",
-          author: "Haixiang Yan",
-        },
-        blogInfo: {
-          publishDate: "Nov 23",
-          publishTime: "21:30",
-          blogTitle: "What I Wore: Travel Edition",
-          blogContent:
-            "Create a blog post subtitle that summarizes your post in a few short, punchy sentences and entices your...",
-          timeStamp: 1514570264733
-        },
-        reviewInfo: {
-          viewNum: 232
-        }
-      }
+      isLoading: true,
+      blogItems: []
     };
   },
+
   components: {
-    BlogItem: BlogItem
+    BlogItem: BlogItem,
+    BlogLoading: BlogLoading
+  },
+
+  mounted() {
+    // send request to get blog item data
+    this.$axios({
+      method: 'get',
+      url: '/recentBlogItems'
+    })
+    .then((response) => {
+      // set Loading as false
+      this.isLoading = false;
+
+      let data = response.data;
+
+      if (data.type === 'success') {
+        this.blogItems = data.data.recentBlogItems;
+      }
+      else {
+        console.error('Error')
+      }
+    })
   }
 };
 </script>
@@ -52,7 +64,13 @@ export default {
   }
 }
 
+/* recent blogs container style */
 .recent-blogs-container {
-  padding: 40px 0;
+  padding: 20px 0;
+}
+
+/* blog item component */
+.blog-item-comp {
+  margin: 20px 0;
 }
 </style>

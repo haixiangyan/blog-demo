@@ -60,6 +60,24 @@ export default {
 </script>
 
 <style scoped>
+@media screen and (min-width: 640px) {
+  .blog-text-container,
+  .blog-image-container {
+    padding: 20px 0;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .blog-image-container {
+    padding: 0;
+  }
+
+  .blog-text-container {
+    width: 90%;
+    margin: 20px 0;
+  }
+}
+
 /* blog item container */
 .blog-item-container {
   display: flex;
@@ -74,7 +92,7 @@ export default {
   flex-direction: column;
 }
 
-/* components style */
+/* blog item content components style */
 .blog-item-content-comp {
   margin: 15px 0;
 }

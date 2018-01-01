@@ -7,7 +7,7 @@
       <!-- subscribe -->
       <div class="subscribe">
         <!-- input box -->
-        <blog-input name="email" @validation="handleValidation" class="subscribe-input" v-model="email" type="email" placeholder="Email Address" :width="450"></blog-input>
+        <blog-input name="email" @validation="handleValidation" class="subscribe-input" v-model="subscribeForm.email" type="email" placeholder="Email Address" :width="450"></blog-input>
         
         <!-- scribe button -->
         <blog-outline-primary-btn :click="subscribe" link="" class="subscribe-btn" title="Subscribe"></blog-outline-primary-btn>
@@ -32,7 +32,9 @@ import BlogOutlinePrimaryBtn from "@/components/common/Btn/PrimaryBtn/OutlinePri
 export default {
   data() {
     return {
-      email: '',
+      subscribeForm: {
+        email: '',
+      },
       formValidation: {
         email: false
       }
@@ -64,12 +66,30 @@ export default {
     },
 
     subscribe() {
+      // validate subscribe form
       if(!this.validateForm()) {
         console.error('Invalid form');
         return ;
       }
+      
+      // send request to subscribe
+      this.$axios({
+        method: 'post',
+        url: '/subscribe',
+        data: {
+          subscribeForm: this.subscribeForm
+        }
+      })
+      .then((response) => {
+        let data = response.data;
 
-      console.log('Subscribe')
+        if (data.type === 'success') {
+          console.log('Subscribe successfully');
+        }
+        else {
+          console.error('Something wrong');
+        }
+      })
     }
   }
 };

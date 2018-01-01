@@ -39,7 +39,7 @@ export default {
       aboutMe: {
         title: '',
         content: '',
-        introImg: '/static/img/utils/no-img.jpg'
+        introImg: ''
       },
     };
   },
