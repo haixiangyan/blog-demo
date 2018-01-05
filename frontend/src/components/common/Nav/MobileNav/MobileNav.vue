@@ -8,8 +8,8 @@
       <!-- Main navigation -->
       <transition enter-active-class="fadeInDown" leave-active-class="fadeOutUp">
         <nav class="animated" v-show="isShow">
-            <router-link to="/" class="nav-item" tag="div">Home</router-link>
-            <router-link to="/blog" class="nav-item" tag="div">Blog</router-link>
+            <router-link to="/home" class="nav-item" tag="div">Home</router-link>
+            <router-link to="/blogs" class="nav-item" tag="div">Blog</router-link>
             <router-link to="/about" class="nav-item" tag="div">About</router-link>
             <router-link to="/contact" class="nav-item" tag="div">Contact</router-link>
         </nav>

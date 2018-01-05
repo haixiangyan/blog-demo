@@ -5,8 +5,8 @@
       </div>
 
       <nav class="max-container">
-          <router-link to="/" class="nav-item" tag="div">Home</router-link>
-          <router-link to="/blog" class="nav-item" tag="div">Blog</router-link>
+          <router-link to="/home" class="nav-item" tag="div">Home</router-link>
+          <router-link to="/blogs" class="nav-item" tag="div">Blog</router-link>
           <router-link to="/about" class="nav-item" tag="div">About</router-link>
           <router-link to="/contact" class="nav-item" tag="div">Contact</router-link>
       </nav>
@@ -39,6 +39,7 @@ nav {
 
 .nav-item {
   padding: 20px;
+  cursor: pointer;
 }
 
 a {
@@ -49,7 +50,6 @@ a {
 .nav-item:hover {
   color: rgb(160, 160, 160);
   transition: color 0.3s;
-  cursor: pointer;
 }
 
 .router-link-active {

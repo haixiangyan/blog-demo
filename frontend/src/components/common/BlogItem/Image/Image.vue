@@ -1,6 +1,4 @@
 <template>
-  <!-- <div :style="{background: `url(${imgSrc})`}" class="blog-image-container">
-  </div> -->
   <div class="image-container">
     <img :src="imgSrc" alt="">
   </div>

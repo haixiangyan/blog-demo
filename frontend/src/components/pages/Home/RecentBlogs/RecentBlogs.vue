@@ -4,8 +4,9 @@
     <blog-loading v-if="isLoading"></blog-loading>
 
     <div v-if="!isLoading" class="max-container blog-items-container">
-      <blog-item v-for="blogItem in blogItems" :key="blogItem.blogInfo.timestamp" class="blog-item-comp" :blogItem="blogItem" :isRow="false"></blog-item>
+      <blog-item v-for="blogItem in blogItems" :key="blogItem.blogInfo.timeStamp" class="blog-item-comp" :blogItem="blogItem"></blog-item>
     </div>
+
   </div>
 </template>
 

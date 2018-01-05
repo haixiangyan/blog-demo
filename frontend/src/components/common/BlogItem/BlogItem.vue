@@ -1,10 +1,10 @@
 <template>
   <div class="blog-item-container white-bg">
-    <div :class="['blog-image-container', {'flex-column': !isRow, 'flexible-column': !isRow}]">
+    <div :class="['blog-image-container', 'flex-column', 'flexible-column']">
       <blog-item-image :imgSrc="blogItem.imgSrc"></blog-item-image>
     </div>
 
-    <div :class="['blog-text-container', {'flex-column': !isRow, 'flexible-column': !isRow}]">
+    <div :class="['blog-text-container', 'flex-column', 'flexible-column']">
       <blog-item-header class="blog-item-header-comp" :blogItem="blogItem"></blog-item-header>
       <blog-item-content class="blog-item-content-comp" :blogItem="blogItem"></blog-item-content>
       <blog-item-footer class="blog-item-footer-comp" :blogItem="blogItem"></blog-item-footer>
@@ -20,10 +20,6 @@ import BlogItemImage from "@/components/common/BlogItem/Image/Image";
 
 export default {
   props: {
-    isRow: {
-      type: Boolean,
-      default: true
-    },
     blogItem: {
       type: Object,
       default: {
