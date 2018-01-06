@@ -11,7 +11,14 @@
 
     <!-- blog item -->
     <div class="blog-item-container white-bg">
-      <div class="max-container">
+
+      <!-- loading -->
+      <blog-loading v-if="isLoading"></blog-loading>
+
+      <!-- blog empty component -->
+      <blog-empty v-if="isEmpty"></blog-empty>
+
+      <div v-if="!isEmpty && !isLoading" class="max-container">
         <blog-item :isLink="false" class="white-bg" v-show="blogItem" :blogItem="blogItem"></blog-item>
       </div>
     </div>
@@ -27,10 +34,13 @@ import BlogBase from "@/components/common/Base/Base";
 import BlogTypeNav from "@/components/pages/Blogs/TypeNav/TypeNav";
 import BlogItem from "@/components/pages/BlogPage/BlogItem/BlogItem";
 import BlogFooter from "@/components/common/Footer/Footer";
+import BlogEmpty from "@/components/common/Empty/Empty";
+import BlogLoading from "@/components/common/Loading/Loading";
 
 export default {
   data() {
     return {
+      isLoading: false,
       blogItem: {
         imgSrc: '/static/img/utils/no-img.jpg',
         authorInfo: {
@@ -45,7 +55,7 @@ export default {
           timeStamp: -1
         },
         reviewInfo: {
-          viewNum: -1,
+          viewNum: 232,
           isLike: false
         }
       },
@@ -80,12 +90,20 @@ export default {
     };
   },
 
+  computed: {
+    isEmpty() {
+      return Object.keys(this.blogItem) === 0;
+    }
+  },
+
   components: {
     BlogNav,
     BlogBase,
     BlogTypeNav,
     BlogItem,
-    BlogFooter
+    BlogFooter,
+    BlogLoading,
+    BlogEmpty
   },
 
   methods: {
@@ -107,6 +125,8 @@ export default {
     let authorName = this.$route.params.authorName;
     let blogID = this.$route.params.blogID;
 
+    this.isLoading = true;
+
     this.$axios({
       method: 'get',
       url: `/blog?author=${authorName}&blogID=${blogID}`
@@ -121,6 +141,8 @@ export default {
         console.error('error');
       }
     })
+
+    this.isLoading = false;
   }
 };
 </script>

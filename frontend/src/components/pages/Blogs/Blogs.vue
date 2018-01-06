@@ -7,11 +7,17 @@
     <blog-base></blog-base>
 
     <!-- type navigation -->
-    <blog-type-nav class="blog-type-nav-comp light-blue-bg" @chooseType="chooseType" @search="displayResult" :navInfo="navInfo"></blog-type-nav>
+    <blog-type-nav class="blog-type-nav-comp light-blue-bg" @chooseType="chooseType" @search="displayResult" @beginSearch="beginSearch" :navInfo="navInfo"></blog-type-nav>
 
     <!-- blogs -->
     <div class="blogs-container light-blue-bg">
-      <div class="max-container">
+      <!-- loading  -->
+      <blog-loading v-if="isLoading"></blog-loading>
+
+      <!-- empty component -->
+      <blog-empty v-if="isEmpty"></blog-empty>
+
+      <div v-if="!isLoading && !isEmpty" class="max-container">
         <blog-item class="blog-item-comp" v-for="blogItem in blogs" :blogItem="blogItem" :key="blogItem.blogInfo.timeStamp"></blog-item>
       </div>
     </div>
@@ -27,10 +33,13 @@ import BlogBase from "@/components/common/Base/Base";
 import BlogTypeNav from "@/components/pages/Blogs/TypeNav/TypeNav";
 import BlogItem from "@/components/common/BlogItem/BlogItem";
 import BlogFooter from "@/components/common/Footer/Footer";
+import BlogEmpty from "@/components/common/Empty/Empty";
+import BlogLoading from "@/components/common/Loading/Loading";
 
 export default {
   data() {
     return {
+      isLoading: false,
       navInfo: [
         {
           title: "Coding",
@@ -63,12 +72,20 @@ export default {
     };
   },
 
+  computed: {
+    isEmpty() {
+      return this.blogs.length === 0;
+    }
+  },
+
   components: {
     BlogNav,
     BlogBase,
     BlogTypeNav,
     BlogItem,
-    BlogFooter
+    BlogFooter,
+    BlogLoading,
+    BlogEmpty
   },
 
   methods: {
@@ -78,6 +95,11 @@ export default {
 
     displayResult(keyword, data) {
       this.blogs = data.blogItems;
+      this.isLoading = false;
+    },
+
+    beginSearch() {
+      this.isLoading = true;
     }
   },
 
@@ -85,6 +107,8 @@ export default {
     // Get the type of blogs
     let typeName = this.$route.query.typeName;
     let keyword = this.$route.query.keyword;
+
+    this.isLoading = true;
 
     if (keyword) {
       // Get the blogs information by searching keyword
@@ -129,6 +153,8 @@ export default {
         }
       });
     }
+
+    this.isLoading = false;
   }
 };
 </script>

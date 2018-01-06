@@ -41,6 +41,8 @@ export default {
         return;
       }
 
+      this.$emit('beginSearch');
+
       // send request to search keyword
       this.$axios({
         method: "get",
