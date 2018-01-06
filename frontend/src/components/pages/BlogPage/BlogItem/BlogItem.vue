@@ -4,7 +4,7 @@
     <blog-item-header class="blog-item-header-comp" :blogItem="blogItem"></blog-item-header>
 
     <!-- content -->
-    <blog-item-content class="blog-item-content-comp" :blogItem="blogItem" :isFilter="false" :isLink="false"></blog-item-content>
+    <blog-item-content class="blog-item-content-comp" :blogItem="blogItem"></blog-item-content>
 
     <!-- footer -->
     <blog-item-footer :isShowComment="false" class="blog-item-footer-comp" :blogItem="blogItem"></blog-item-footer>
@@ -13,7 +13,7 @@
 
 <script>
 import BlogItemHeader from "@/components/common/BlogItem/Header/Header";
-import BlogItemContent from "@/components/common/BlogItem/Content/Content";
+import BlogItemContent from "@/components/pages/BlogPage/BlogItem/Content/Content";
 import BlogItemFooter from "@/components/common/BlogItem/Footer/Footer";
 
 export default {
