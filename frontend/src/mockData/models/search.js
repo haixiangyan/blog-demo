@@ -2,7 +2,7 @@ import Mock from 'mockjs';
 
 export const search = [
   {
-    path: /\/search\/q=[A-Za-z0-9]*/,
+    path: /\/search\?q=[A-Za-z0-9]*/,
     type: 'get',
     data() {
 

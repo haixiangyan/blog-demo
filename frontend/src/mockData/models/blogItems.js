@@ -1,11 +1,9 @@
 import Mock from 'mockjs';
 
-export const blogItems = [
-  {
-    path: '/recentBlogItems',
+export const blogItems = [{
+    path: /\/blogs\?typeName=[A-Za-z0-9]*/,
     type: 'get',
     data() {
-
       let result = {
         type: 'success',
         data: {
@@ -13,21 +11,21 @@ export const blogItems = [
         }
       };
 
-      let recentBlogItems= [];
+      let recentBlogItems = [];
 
-      for (let i = 1 ; i <= 3 ; i++) {
+      for (let i = 1; i <= 3; i++) {
         let blogItem = {
           imgSrc: `/static/img/blogs/blog_${i}.jpg`,
           authorInfo: {
             avatar: "/static/img/utils/avatar.jpg",
-            author: "Haixiang Yan",
+            author: "HaixiangYan",
           },
           blogInfo: {
             publishDate: Mock.Random.date('MM - dd'),
             publishTime: Mock.Random.time('HH : mm'),
             blogTitle: Mock.Random.title(),
             blogContent: Mock.Random.paragraph(),
-            timeStamp: new Date().getTime()
+            timeStamp: new Date().getTime() + Mock.Random.natural(1, 200)
           },
           reviewInfo: {
             viewNum: Mock.Random.natural(20, 400),
@@ -43,45 +41,36 @@ export const blogItems = [
       return result;
     }
   },
-
   {
-    path: '/allPostBlogs',
+    // path: /\/blog\?author=[A-Za-z0-9]*&blogID=[A-Za-z0-9]*/,
+    path: /\/blog\?author=[A-Za-z0-9]*&blogID=[A-Za-z0-9]*/,
     type: 'get',
     data() {
-
       let result = {
         type: 'success',
-        data: {
-          recentBlogItems: []
-        }
+        data: {}
       };
 
-      let recentBlogItems= [];
-
-      for (let i = 1 ; i <= 3 ; i++) {
-        let blogItem = {
-          imgSrc: `/static/img/blogs/blog_${i}.jpg`,
-          authorInfo: {
-            avatar: "/static/img/utils/avatar.jpg",
-            author: "Haixiang Yan",
-          },
-          blogInfo: {
-            publishDate: Mock.Random.date('MM - dd'),
-            publishTime: Mock.Random.time('HH : mm'),
-            blogTitle: Mock.Random.title(),
-            blogContent: Mock.Random.paragraph(),
-            timeStamp: new Date().getTime()
-          },
-          reviewInfo: {
-            viewNum: Mock.Random.natural(20, 400),
-            isLike: Mock.Random.boolean()
-          }
+      let blogItem = {
+        imgSrc: `/static/img/blogs/blog_${Mock.Random.natural(1, 3)}.jpg`,
+        authorInfo: {
+          avatar: "/static/img/utils/avatar.jpg",
+          author: "HaixiangYan",
+        },
+        blogInfo: {
+          publishDate: Mock.Random.date('MM - dd'),
+          publishTime: Mock.Random.time('HH : mm'),
+          blogTitle: Mock.Random.title(),
+          blogContent: Mock.Random.paragraph(),
+          timeStamp: new Date().getTime() + Mock.Random.natural(1, 200)
+        },
+        reviewInfo: {
+          viewNum: Mock.Random.natural(20, 400),
+          isLike: Mock.Random.boolean()
         }
-
-        recentBlogItems.push(blogItem);
       }
 
-      result.data.recentBlogItems = recentBlogItems;
+      result.data.blogItem = blogItem;
 
       return result;
     }

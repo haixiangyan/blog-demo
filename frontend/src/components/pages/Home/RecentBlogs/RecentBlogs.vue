@@ -31,7 +31,7 @@ export default {
     // send request to get blog item data
     this.$axios({
       method: 'get',
-      url: '/recentBlogItems'
+      url: '/blogs?typeName=recent'
     })
     .then((response) => {
       // set Loading as false
@@ -51,20 +51,6 @@ export default {
 </script>
 
 <style scoped>
-@media screen and (max-width: 1024px) {
-  .blog-items-container {
-    padding: 0 35px;
-    box-sizing: border-box;
-  }
-}
-
-@media screen and (min-width: 1024px) {
-  .blog-items-container {
-    padding: 35px;
-    box-sizing: border-box;
-  }
-}
-
 /* recent blogs container style */
 .recent-blogs-container {
   padding: 20px 0;

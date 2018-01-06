@@ -30,7 +30,7 @@ export default {
       // send request to search keyword
       this.$axios({
         method: 'get',
-        url: `/search/q=${this.keyword}`
+        url: `/search?q=${this.keyword}`
       })
       .then((response) => {
         console.log(response)

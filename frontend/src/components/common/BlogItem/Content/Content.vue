@@ -1,15 +1,29 @@
 <template>
-  <router-link :to="`/blog/${blogItem.authorInfo.author}/${blogItem.blogInfo.timeStamp}`" class="blog-content-container">
-    <div class="blog-title title-font-size main-font-color">
-      {{blogItem.blogInfo.blogTitle}}
-    </div>
+  <div>
+      <router-link v-if="isLink" :to="`/blog/${blogItem.authorInfo.author}/${blogItem.blogInfo.timeStamp}`" class="blog-link-content-container">
+        <div class="blog-title title-font-size main-font-color">
+          {{blogItem.blogInfo.blogTitle}}
+        </div>
 
-    <p class="blog-content normal-font-color">
-      {{filterBlogContent}}
-    </p>
+        <p class="blog-content normal-font-color">
+          {{filterBlogContent}}
+        </p>
 
-    <div class="delimiter"></div>
-  </router-link>
+        <div class="delimiter"></div>
+      </router-link>
+
+      <div v-if="!isLink" class="blog-content-container">
+        <div class="blog-title title-font-size main-font-color">
+          {{blogItem.blogInfo.blogTitle}}
+        </div>
+
+        <p class="blog-content normal-font-color">
+          {{filterBlogContent}}
+        </p>
+
+        <div class="delimiter"></div>
+      </div>
+  </div>
 </template>
 
 <script>
@@ -40,10 +54,22 @@ export default {
           isLike: false
         }
       }
+    },
+    isFilter: {
+      type: Boolean,
+      default: true
+    },
+    isLink: {
+      type: Boolean,
+      default: true
     }
   },
   computed: {
     filterBlogContent() {
+      if (!this.isFilter) {
+        return this.blogItem.blogInfo.blogContent;
+      }
+
       let strArr = this.blogItem.blogInfo.blogContent.split(' ');
 
       // If number of words is less than 20, then return the content
@@ -72,13 +98,13 @@ export default {
   transition: .35s color;
 }
 
-.blog-content-container:hover .blog-title {
+.blog-link-content-container:hover .blog-title {
   color: rgba(129,145,156,1);
 }
 
 /* blog content style */
 .blog-content {
-  margin: 30px 0 60px;
+  margin: 30px 0px;
   line-height: 1.5;
   word-wrap: break-word;
 }

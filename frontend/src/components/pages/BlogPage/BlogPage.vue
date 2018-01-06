@@ -1,5 +1,5 @@
 <template>
-  <div class="blogs-page">
+  <div class="blog-page-container">
     <!-- navigation -->
     <blog-nav></blog-nav>
 
@@ -9,10 +9,10 @@
     <!-- type navigation -->
     <blog-type-nav class="blog-type-nav-comp light-blue-bg" @chooseType="chooseType" :navInfo="navInfo"></blog-type-nav>
 
-    <!-- blogs -->
-    <div class="blogs-container light-blue-bg">
+    <!-- blog item -->
+    <div class="blog-item-container white-bg">
       <div class="max-container">
-        <blog-item class="blog-item-comp" v-for="blogItem in blogs" :blogItem="blogItem" :key="blogItem.blogInfo.timeStamp"></blog-item>
+        <blog-item :isLink="false" class="white-bg" v-show="blogItem" :blogItem="blogItem"></blog-item>
       </div>
     </div>
 
@@ -25,12 +25,30 @@
 import BlogNav from "@/components/common/Nav/Nav";
 import BlogBase from "@/components/common/Base/Base";
 import BlogTypeNav from "@/components/pages/Blogs/TypeNav/TypeNav";
-import BlogItem from "@/components/common/BlogItem/BlogItem";
+import BlogItem from "@/components/pages/BlogPage/BlogItem/BlogItem";
 import BlogFooter from "@/components/common/Footer/Footer";
 
 export default {
   data() {
     return {
+      blogItem: {
+        imgSrc: '/static/img/utils/no-img.jpg',
+        authorInfo: {
+          avatar: '/static/img/utils/no-author.png',
+          author: '',
+        },
+        blogInfo: {
+          publishDate: '',
+          publishTime: '',
+          blogTitle: '',
+          blogContent: '',
+          timeStamp: -1
+        },
+        reviewInfo: {
+          viewNum: -1,
+          isLike: false
+        }
+      },
       navInfo: [
         {
           title: "Coding",
@@ -58,8 +76,7 @@ export default {
             }
           ]
         }
-      ],
-      blogs: []
+      ]
     };
   },
 
@@ -78,36 +95,29 @@ export default {
   },
 
   mounted() {
-    // Get the type of blogs
-    let typeName = this.$route.query.typeName;
+    let authorName = this.$route.params.authorName;
+    let blogID = this.$route.params.blogID;
 
-    // Get the blogs information
     this.$axios({
-      method: "get",
-      url: `/blogs?typeName=${typeName}`
-    }).then(response => {
+      method: 'get',
+      url: `/blog?author=${authorName}&blogID=${blogID}`
+    })
+    .then((response) => {
       let data = response.data;
 
-      if (data.type === "success") {
-        this.blogs = data.data.recentBlogItems;
-      } else {
-        console.error("error");
+      if (data.type === 'success') {
+        this.blogItem = data.data.blogItem;
       }
-    });
+      else {
+        console.error('error');
+      }
+    })
   }
 };
 </script>
 
 <style scoped>
-.blogs-container {
-  padding: 10px 0;
-}
-
-.blog-type-nav-comp {
-  padding: 10px 0;
-}
-
-.blog-item-comp {
-  margin: 20px 0;
+.blog-item-container {
+  padding: 50px 0 20px;
 }
 </style>

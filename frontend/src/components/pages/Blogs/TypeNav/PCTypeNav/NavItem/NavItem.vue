@@ -9,9 +9,9 @@
     <!-- sub nav container -->
     <transition name="fade">
       <div v-show="isShow" @mouseleave="hide" class="sub-nav-container">
-        <div v-for="subNavItem in navItemInfo.subNav" :key="subNavItem.title" @click="search(subNavItem.title)" class="sub-nav-item">
+        <router-link :to="`/blogs?typeName=${subNavItem.title}`" tag="div" v-for="subNavItem in navItemInfo.subNav" :key="subNavItem.title" @click="search(subNavItem.title)" class="sub-nav-item">
           {{subNavItem.title}}
-        </div>
+        </router-link>
       </div>
     </transition>
 
@@ -51,7 +51,7 @@ export default {
       // send request to search keyword
       this.$axios({
         method: 'get',
-        url: `/search/q=${title}`
+        url: `/blogItems/typeName=${title}`
       })
       .then((response) => {
         let data = response.data;

@@ -5,7 +5,7 @@
         {{blogItem.reviewInfo.viewNum}} views
       </div>
 
-      <router-link :to="`/blog/${blogItem.authorInfo.author}/${blogItem.blogInfo.timeStamp}`" class="comment offset-font-size normal-font-color">
+      <router-link v-if="isShowComment" :to="`/blog/${blogItem.authorInfo.author}/${blogItem.blogInfo.timeStamp}`" class="comment offset-font-size normal-font-color">
         Write a Comment
       </router-link>
     </div>
@@ -21,25 +21,25 @@
 
 <script>
 export default {
-    data() {
-      return {
-        currentIsLike: this.blogItem.reviewInfo.isLike
-      }
-    },
-    props: {
+  data() {
+    return {
+      currentIsLike: this.blogItem.reviewInfo.isLike
+    };
+  },
+  props: {
     blogItem: {
       type: Object,
       default: {
-        imgSrc: '/static/img/utils/no-img.jpg',
+        imgSrc: "/static/img/utils/no-img.jpg",
         authorInfo: {
-          avatar: '/static/img/utils/no-author.png',
-          author: '',
+          avatar: "/static/img/utils/no-author.png",
+          author: ""
         },
         blogInfo: {
-          publishDate: '',
-          publishTime: '',
-          blogTitle: '',
-          blogContent: '',
+          publishDate: "",
+          publishTime: "",
+          blogTitle: "",
+          blogContent: "",
           timeStamp: -1
         },
         reviewInfo: {
@@ -47,14 +47,18 @@ export default {
           isLike: false
         }
       }
+    },
+    isShowComment: {
+      type: Boolean,
+      default: true
     }
   },
   methods: {
     like() {
-      this.currentIsLike =!this.currentIsLike;
+      this.currentIsLike = !this.currentIsLike;
     }
   }
-}
+};
 </script>
 
 <style scoped>
