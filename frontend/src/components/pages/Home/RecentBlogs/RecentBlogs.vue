@@ -40,7 +40,7 @@ export default {
       let data = response.data;
 
       if (data.type === 'success') {
-        this.blogItems = data.data.recentBlogItems;
+        this.blogItems = data.data.blogItems;
       }
       else {
         console.error('Error')

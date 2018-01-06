@@ -7,7 +7,7 @@
     <blog-base></blog-base>
 
     <!-- type navigation -->
-    <blog-type-nav class="blog-type-nav-comp light-blue-bg" @chooseType="chooseType" :navInfo="navInfo"></blog-type-nav>
+    <blog-type-nav class="blog-type-nav-comp light-blue-bg" @chooseType="chooseType" @search="displayResult" :navInfo="navInfo"></blog-type-nav>
 
     <!-- blogs -->
     <div class="blogs-container light-blue-bg">
@@ -73,27 +73,62 @@ export default {
 
   methods: {
     chooseType(data) {
-      this.blogs = data;
+      this.blogs = data.blogItems;
+    },
+
+    displayResult(keyword, data) {
+      this.blogs = data.blogItems;
     }
   },
 
   mounted() {
     // Get the type of blogs
     let typeName = this.$route.query.typeName;
+    let keyword = this.$route.query.keyword;
 
-    // Get the blogs information
-    this.$axios({
-      method: "get",
-      url: `/blogs?typeName=${typeName}`
-    }).then(response => {
-      let data = response.data;
+    if (keyword) {
+      // Get the blogs information by searching keyword
+      this.$axios({
+        method: "get",
+        url: `/search?q=${keyword}`
+      }).then(response => {
+        let data = response.data;
 
-      if (data.type === "success") {
-        this.blogs = data.data.recentBlogItems;
-      } else {
-        console.error("error");
-      }
-    });
+        if (data.type === "success") {
+          this.blogs = data.data.blogItems;
+        } else {
+          console.error("error");
+        }
+      });
+    } else if (typeName) {
+      // Get the blogs information by given typeName
+      this.$axios({
+        method: "get",
+        url: `/blogs?typeName=${typeName}`
+      }).then(response => {
+        let data = response.data;
+
+        if (data.type === "success") {
+          this.blogs = data.data.blogItems;
+        } else {
+          console.error("error");
+        }
+      });
+    } else {
+      // Get the blogs information by given typeName
+      this.$axios({
+        method: "get",
+        url: `/blogs?typeName=allPost`
+      }).then(response => {
+        let data = response.data;
+
+        if (data.type === "success") {
+          this.blogs = data.data.blogItems;
+        } else {
+          console.error("error");
+        }
+      });
+    }
   }
 };
 </script>

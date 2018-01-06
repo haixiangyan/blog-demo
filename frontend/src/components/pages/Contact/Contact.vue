@@ -49,7 +49,7 @@ export default {
     return {
       contactIntro: {
         introImg: '/static/img/contact/contact.jpg',
-        introContent: `I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font. I’m a great place for you to tell a story and let your users know a little more about you.`
+        introContent: `Want to give some suggestion to me? Fill in the form and hit the Send button to let me know your awesome ideas. I'll try all my best to improve my blog :)`
       },
       contactForm: {
         name: '',

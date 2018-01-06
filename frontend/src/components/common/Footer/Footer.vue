@@ -2,7 +2,7 @@
   <div class="footer-container">
     <div class="max-container">
       <!-- Join title -->
-      <p class="join-title">Join me mailing list Never miss an update</p>
+      <p class="join-title">Join my mailing list Never miss an update</p>
 
       <!-- subscribe -->
       <div class="subscribe">

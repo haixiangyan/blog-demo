@@ -8,7 +8,7 @@
           <div class="intro-blog">
             <p class="intro-item-header motto-font">Read</p>
             <p class="intro-item-body sub-title-font">THE BLOG</p>
-            <blog-primary-btn link="/blog" title="Read Blogs"></blog-primary-btn>
+            <blog-primary-btn link="/blogs" title="Read Blogs"></blog-primary-btn>
           </div>
           
           <!-- about part -->

@@ -37,10 +37,13 @@ export default {
   data() {
     return {
       aboutMe: {
-        title: '',
-        content: '',
-        introImg: ''
-      },
+        title: `Hi! I'm Haixiang, a serious coder.`,
+        content: `I'm Haixiang Yan, studying in UCI (University of California, Irvine) and working on Front end development. 
+        I have rich experience of using JavaScript, HTML 5, CSS 3. I'm also famliar with using Vue.js, webpack and es6.
+        
+        I love playing Guitar and computer games. One of my faviorite games is Overwatch, and I am really good at widow :) You can join me any time. I'm so happy to play with you. `,
+        introImg: "/static/img/about/intro.jpg"
+      }
     };
   },
 
@@ -50,17 +53,6 @@ export default {
     BlogFooter: BlogFooter,
     BlogSoical: BlogSoical
   },
-
-  mounted() {
-    // Send request to get my information
-    this.$axios({
-      method: 'get',
-      url: '/about',
-    })
-    .then((response) => {
-      this.aboutMe = response.data.data;
-    })
-  }
 };
 </script>
 

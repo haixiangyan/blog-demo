@@ -7,7 +7,7 @@
     <blog-base></blog-base>
 
     <!-- type navigation -->
-    <blog-type-nav class="blog-type-nav-comp light-blue-bg" @chooseType="chooseType" :navInfo="navInfo"></blog-type-nav>
+    <blog-type-nav class="blog-type-nav-comp light-blue-bg" @chooseType="chooseType" @search="displayResult" :navInfo="navInfo"></blog-type-nav>
 
     <!-- blog item -->
     <div class="blog-item-container white-bg">
@@ -91,6 +91,15 @@ export default {
   methods: {
     chooseType(data) {
       this.blogs = data;
+    },
+
+    displayResult(keyword, data) {
+      this.$route.push({
+        path: '/blogs',
+        query: {
+          keyword: keyword
+        }
+      });
     }
   },
 

@@ -6,7 +6,7 @@
       </div>
 
       <div class="search">
-        <blog-search-input></blog-search-input>
+        <blog-search-input @search="emitSearchResult"></blog-search-input>
       </div>
     </div>
   </div>
@@ -38,6 +38,10 @@ export default {
   methods: {
     chooseType(data) {
       this.$emit('chooseType', data);
+    },
+
+    emitSearchResult(keyword, data) {
+      this.$emit('search', keyword, data);
     }
   }
 };

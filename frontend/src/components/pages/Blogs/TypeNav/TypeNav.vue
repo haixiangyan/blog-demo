@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- pc blogs type navigation -->
-    <blog-pc-type-nav @chooseType="chooseType" :navInfo="navInfo" class="is-pc"></blog-pc-type-nav>
+    <blog-pc-type-nav @chooseType="chooseType" @search="emitSearchResult" :navInfo="navInfo" class="is-pc"></blog-pc-type-nav>
 
     <!-- mobile blogs type navigation -->
     <blog-mobile-type-nav @chooseType="chooseType" :navInfo="navInfo" class="is-mobile"></blog-mobile-type-nav>
@@ -28,6 +28,10 @@ export default {
   methods: {
     chooseType(data) {
       this.$emit('chooseType', data);
+    },
+
+    emitSearchResult(keyword, data) {
+      this.$emit('search', keyword, data);
     }
   }
 }

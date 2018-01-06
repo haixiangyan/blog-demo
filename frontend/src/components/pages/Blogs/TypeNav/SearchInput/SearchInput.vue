@@ -1,8 +1,8 @@
 <template>
   <div class="search-input-container">
-    <div v-show="isShow" class="input-container">
+    <div v-show="isShow" :class="['input-container', { 'invalid' : !isValid }]">
       <i @click="search" class="fa fa-search" aria-hidden="true"></i>
-      <input type="search" v-model="keyword">
+      <input @keyup.enter="search" type="search" v-model="keyword">
       <i @click="show" class="fa fa-times" aria-hidden="true"></i>
     </div>
 
@@ -14,9 +14,21 @@
 export default {
   data() {
     return {
+      isValid: true,
       isShow: false,
-      keyword: ''
+      keyword: "Input keyword"
     };
+  },
+
+  watch: {
+    keyword() {
+      if (this.keyword === "") {
+        this.isValid = false;
+      }
+      else {
+        this.isValid = true;
+      }
+    }
   },
 
   methods: {
@@ -25,21 +37,26 @@ export default {
     },
 
     search() {
-      let result = '';
+      if (!this.isValid) {
+        return;
+      }
 
       // send request to search keyword
       this.$axios({
-        method: 'get',
+        method: "get",
         url: `/search?q=${this.keyword}`
-      })
-      .then((response) => {
-        console.log(response)
-      })
+      }).then(response => {
+        let data = response.data;
 
-      this.$emit('result', this.keyword, result);
+        if (data.type === "success") {
+          this.$emit("search", this.keyword, data.data);
+        } else {
+          console.error("error");
+        }
+      });
     }
   }
-}
+};
 </script>
 
 <style scoped>
@@ -53,7 +70,7 @@ input {
 
 i {
   cursor: pointer;
-  transition: all .35s;
+  transition: all 0.35s;
 }
 
 i:hover {
@@ -66,10 +83,18 @@ i:hover {
   align-items: center;
   border-bottom: 1px solid black;
   padding: 5px;
-  transition: all .35s;
+  transition: all 0.35s;
 }
 
 .input-container input {
   flex-grow: 1;
+}
+
+.invalid {
+  border-bottom: 1px solid #f56c6c;
+}
+
+.invalid i {
+  color: #f56c6c;
 }
 </style>

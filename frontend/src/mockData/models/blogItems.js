@@ -1,17 +1,17 @@
 import Mock from 'mockjs';
 
 export const blogItems = [{
-    path: /\/blogs\?typeName=[A-Za-z0-9]*/,
+    path: /\/blogs\?typeName=[A-Za-z0-9%]*/,
     type: 'get',
     data() {
       let result = {
         type: 'success',
         data: {
-          recentBlogItems: []
+          blogItems: []
         }
       };
 
-      let recentBlogItems = [];
+      let blogItems = [];
 
       for (let i = 1; i <= 3; i++) {
         let blogItem = {
@@ -33,17 +33,17 @@ export const blogItems = [{
           }
         }
 
-        recentBlogItems.push(blogItem);
+        blogItems.push(blogItem);
       }
 
-      result.data.recentBlogItems = recentBlogItems;
+      result.data.blogItems = blogItems;
 
       return result;
     }
   },
   {
     // path: /\/blog\?author=[A-Za-z0-9]*&blogID=[A-Za-z0-9]*/,
-    path: /\/blog\?author=[A-Za-z0-9]*&blogID=[A-Za-z0-9]*/,
+    path: /\/blog\?author=[A-Za-z0-9%]*&blogID=[A-Za-z0-9]*/,
     type: 'get',
     data() {
       let result = {
