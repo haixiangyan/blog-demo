@@ -118,7 +118,7 @@ export default {
       this.formValidation[name] = isValid;
     }
   }
-};
+}
 </script>
 
 <style scoped>

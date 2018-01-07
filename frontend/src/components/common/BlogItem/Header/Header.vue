@@ -10,7 +10,7 @@
       <p class="author-name">{{blogItem.authorInfo.author}}</p>
 
       <div class="publish-date-time">
-        {{blogItem.blogInfo.publishDate}} - {{blogItem.blogInfo.publishTime}}
+        {{blogItem.blogInfo.publishDate}}, {{blogItem.blogInfo.publishTime}}
       </div>
     </div>
   </div>
