@@ -1,11 +1,5 @@
 <template>
   <div class="blog-page-container">
-    <!-- navigation -->
-    <blog-nav></blog-nav>
-
-    <!-- blog base -->
-    <blog-base></blog-base>
-
     <!-- type navigation -->
     <blog-type-nav class="blog-type-nav-comp light-blue-bg" @chooseType="chooseType" @search="displayResult" :navInfo="navInfo"></blog-type-nav>
 
@@ -22,18 +16,12 @@
         <blog-item :isLink="false" class="white-bg" v-show="blogItem" :blogItem="blogItem"></blog-item>
       </div>
     </div>
-
-    <!-- blog footer -->
-    <blog-footer></blog-footer>
   </div>
 </template>
 
 <script>
-import BlogNav from "@/components/common/Nav/Nav";
-import BlogBase from "@/components/common/Base/Base";
 import BlogTypeNav from "@/components/pages/Blogs/TypeNav/TypeNav";
 import BlogItem from "@/components/pages/BlogPage/BlogItem/BlogItem";
-import BlogFooter from "@/components/common/Footer/Footer";
 import BlogEmpty from "@/components/common/Empty/Empty";
 import BlogLoading from "@/components/common/Loading/Loading";
 
@@ -97,11 +85,8 @@ export default {
   },
 
   components: {
-    BlogNav,
-    BlogBase,
     BlogTypeNav,
     BlogItem,
-    BlogFooter,
     BlogLoading,
     BlogEmpty
   },

@@ -33,7 +33,7 @@ export default {
   data() {
     return {
       subscribeForm: {
-        email: '',
+        email: ""
       },
       formValidation: {
         email: false
@@ -42,9 +42,9 @@ export default {
   },
 
   components: {
-    'BlogSocial': BlogSoical,
-    'BlogInput': BlogInput,
-    'BlogOutlinePrimaryBtn': BlogOutlinePrimaryBtn,
+    BlogSocial: BlogSoical,
+    BlogInput: BlogInput,
+    BlogOutlinePrimaryBtn: BlogOutlinePrimaryBtn
   },
 
   methods: {
@@ -56,7 +56,7 @@ export default {
           return false;
         }
       }
-      
+
       return true;
     },
 
@@ -67,29 +67,36 @@ export default {
 
     subscribe() {
       // validate subscribe form
-      if(!this.validateForm()) {
-        console.error('Invalid form');
-        return ;
+      if (!this.validateForm()) {
+        this.$store.commit("trigger", {
+          title: `Please input your email corectly`,
+          type: "warning"
+        });
+        return;
       }
-      
+
       // send request to subscribe
       this.$axios({
-        method: 'post',
-        url: '/subscribe',
+        method: "post",
+        url: "/subscribe",
         data: {
           subscribeForm: this.subscribeForm
         }
-      })
-      .then((response) => {
+      }).then(response => {
         let data = response.data;
 
-        if (data.type === 'success') {
-          console.log('Subscribe successfully');
+        if (data.type === "success") {
+          this.$store.commit("trigger", {
+            title: `Thank you for your subscription :)`,
+            type: "success"
+          });
+        } else {
+          this.$store.commit("trigger", {
+            title: data.errorMsg ? data.errorMsg : 'OFF~ Something goes wrong :(',
+            type: "danger"
+          });
         }
-        else {
-          console.error('Something wrong');
-        }
-      })
+      });
     }
   }
 };
@@ -132,8 +139,8 @@ export default {
 .brand {
   padding: 5px;
   text-align: center;
-  font-size: .9em;
-  color: #A0A09F;
+  font-size: 0.9em;
+  color: #a0a09f;
   background: #2f2e2e;
 }
 </style>

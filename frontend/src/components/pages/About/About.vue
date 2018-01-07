@@ -1,9 +1,5 @@
 <template>
     <div class="about-page">
-        <blog-nav></blog-nav>
-
-        <blog-base></blog-base>
-
         <div class="introduction-container light-blue-bg ">
           <div class="introduction-wrapper max-container">
             <p class="about-title">ABOUT ME</p>
@@ -16,19 +12,11 @@
 
             <blog-soical :isInverse="true"></blog-soical>
           </div>
-
         </div>
-
-        <!-- Footer -->
-        <blog-footer></blog-footer>
     </div>
 </template>
 
 <script>
-import BlogNav from "@/components/common/Nav/Nav";
-import BlogBase from "@/components/common/Base/Base";
-import BlogIntro from "@/components/pages/Home/Intro/Intro";
-import BlogFooter from "@/components/common/Footer/Footer";
 import BlogSoical from "@/components/common/Social/Social";
 
 export default {
@@ -48,9 +36,6 @@ export default {
   },
 
   components: {
-    BlogNav: BlogNav,
-    BlogBase: BlogBase,
-    BlogFooter: BlogFooter,
     BlogSoical: BlogSoical
   },
 };

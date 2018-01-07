@@ -8,9 +8,9 @@ export const subscribe = [
 
       let body = JSON.parse(req.body);
 
-      let result = (body.subscribeForm.email === 'false') ? {
+      let result = (body.subscribeForm.email === 'false@gg.com') ? {
         type: 'fail',
-        msg: `Something wrong`
+        errorMsg: 'something went wrong'
       }: {
         type: 'success'
       }

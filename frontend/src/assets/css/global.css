@@ -138,6 +138,22 @@ div, p, span, a, h1, h2, h3, h4, h5 {
     background-color: white;
 }
 
+.danger-bg {
+    background-color: #F56C6C;
+}
+
+.success-bg {
+    background-color: #67C23A;
+}
+
+.warning-bg {
+    background-color: #E6A23C;
+}
+
+.info-bg {
+    background-color: #409EFF;
+}
+
 /**
  * Other
  */

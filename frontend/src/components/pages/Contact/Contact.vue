@@ -1,10 +1,5 @@
 <template>
     <div class="contact-page">
-
-        <blog-nav></blog-nav>
-
-        <blog-base></blog-base>
-
         <div class="contact-container light-blue-bg">
           <div class="contact-wrapper max-container">
             <p class="contact-title">CONTACT</p>
@@ -28,16 +23,10 @@
             <blog-primary-btn :click="send" title="Send"></blog-primary-btn>
           </div>
         </div>
-
-        <!-- Footer -->
-        <blog-footer></blog-footer>
     </div>
 </template>
 
 <script>
-import BlogNav from "@/components/common/Nav/Nav";
-import BlogBase from "@/components/common/Base/Base";
-import BlogFooter from "@/components/common/Footer/Footer";
 import BlogInput from '@/components/common/Form/Input/Input';
 import BlogTextarea from '@/components/common/Form/TextArea/TextArea';
 import BlogPrimaryBtn from '@/components/common/Btn/PrimaryBtn/PrimaryBtn';
@@ -67,11 +56,8 @@ export default {
   },
 
   components: {
-    BlogNav: BlogNav,
-    BlogBase: BlogBase,
     BlogInput: BlogInput,
     BlogTextarea: BlogTextarea,
-    BlogFooter: BlogFooter,
     BlogPrimaryBtn: BlogPrimaryBtn
   },
 
@@ -81,6 +67,10 @@ export default {
       // Iterate values of formValidation
       for (let value of Object.values(this.formValidation)) {
         if (!value) {
+          this.$store.commit("trigger", {
+            title: 'Please fill in the form correctly',
+            type: "warning"
+          });
           return false;
         }
       }
@@ -105,10 +95,16 @@ export default {
       .then((response) => {
         let data = response.data;
         if(data.type === 'success') {
-          console.log('success');
+          this.$store.commit("trigger", {
+            title: `Thank you for sending me your suggestion :)`,
+            type: "success"
+          });
         }
         else {
-          console.error(data.msg)
+          this.$store.commit("trigger", {
+            title: data.errorMsg ? data.errorMsg : 'OFF~ Something goes wrong :(',
+            type: "danger"
+          });
         }
       })
     },

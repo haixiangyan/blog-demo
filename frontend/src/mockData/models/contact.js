@@ -10,7 +10,7 @@ export const contact = [
 
       let result = (body.contactForm.name === 'false') ? {
         type: 'fail',
-        msg: `Something wrong`
+        errorMsg: `Something wrong`
       }: {
         type: 'success'
       }
