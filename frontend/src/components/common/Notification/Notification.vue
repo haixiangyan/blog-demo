@@ -1,10 +1,10 @@
 <template>
   <div class="notification-container">
     <!-- mobile notification -->
-    <blog-mobile-notification :isShow="isShow" :title="title" :type="type"></blog-mobile-notification>
+    <blog-mobile-notification class="is-mobile" :isShow="isShow" :title="title" :type="type"></blog-mobile-notification>
 
     <!-- pc notification -->
-    <blog-pc-notification :title="title" :type="type"></blog-pc-notification>
+    <blog-pc-notification class="is-pc" :isShow="isShow" :title="title" :type="type"></blog-pc-notification>
   </div>
 </template>
 

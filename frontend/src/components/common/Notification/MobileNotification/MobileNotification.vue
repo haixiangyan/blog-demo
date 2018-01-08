@@ -1,16 +1,18 @@
 <template>
-  <div :class="['pc-notification-container', {trigger: isShow}]">
-    <!-- icon -->
-    <div :class="['icon', typeClass]">
-      <i v-if="type === 'info'" class="fa fa-info" aria-hidden="true"></i>
-      <i v-if="type === 'success'" class="fa fa-check" aria-hidden="true"></i>
-      <i v-if="type === 'danger'" class="fa fa-times" aria-hidden="true"></i>
-      <i v-if="type === 'warning'" class="fa fa-exclamation" aria-hidden="true"></i>
-    </div>
+  <div>
+    <div :class="['pc-notification-container', {trigger: isShow}]">
+      <!-- icon -->
+      <div :class="['icon', typeClass]">
+        <i v-if="type === 'info'" class="fa fa-info" aria-hidden="true"></i>
+        <i v-if="type === 'success'" class="fa fa-check" aria-hidden="true"></i>
+        <i v-if="type === 'danger'" class="fa fa-times" aria-hidden="true"></i>
+        <i v-if="type === 'warning'" class="fa fa-exclamation" aria-hidden="true"></i>
+      </div>
 
-    <!-- title -->
-    <div class="title">
-      <span >{{title}}</span>
+      <!-- title -->
+      <div class="title">
+        <span >{{title}}</span>
+      </div>
     </div>
   </div>
 </template>
@@ -63,9 +65,11 @@ export default {
   }
 }
 
-.danger-note .icon {
-  background: #F56C6C
+.trigger {
+  animation: 3s show;
 }
+
+/* container style */
 
 .pc-notification-container {
   position: fixed;
@@ -76,10 +80,7 @@ export default {
   align-items: center;
   background: white;
   opacity: 0;
-}
-
-.trigger {
-  animation: 3s show;
+  box-shadow: 0 0 8px #909399;
 }
 
 /* icons style */
@@ -90,6 +91,6 @@ export default {
 
 /* title style */
 .title {
-  padding: 13px 20px;
+  padding: 0 20px;
 }
 </style>
