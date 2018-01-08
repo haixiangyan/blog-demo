@@ -5,12 +5,12 @@ import BlogPage from '@/components/pages/BlogPage/BlogPage';
 import Blogs from '@/components/pages/Blogs/Blogs';
 import About from '@/components/pages/About/About';
 import Contact from '@/components/pages/Contact/Contact';
+import NotFound from '@/components/pages/NotFound/NotFound';
 
 Vue.use(Router)
 
 export default new Router({
-  routes: [
-    {
+  routes: [{
       path: '/',
       redirect: '/home'
     },
@@ -38,6 +38,10 @@ export default new Router({
       path: '/blog/:authorName/:blogID',
       name: 'BlogPage',
       component: BlogPage
+    },
+    {
+      path: '*',
+      component: NotFound
     }
   ]
 })
