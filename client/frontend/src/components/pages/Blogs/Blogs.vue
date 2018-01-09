@@ -28,30 +28,7 @@ export default {
   data() {
     return {
       isLoading: false,
-      navInfo: [
-        {
-          title: "Coding",
-          subNav: [
-            {
-              topic: "Front end blogs"
-            },
-            {
-              topic: "Back end blogs"
-            }
-          ]
-        },
-        {
-          title: "Life",
-          subNav: [
-            {
-              topic: "Life in China"
-            },
-            {
-              topic: "Life in UCI"
-            }
-          ]
-        }
-      ],
+      navInfo: [],
       blogs: []
     };
   },
@@ -85,6 +62,23 @@ export default {
   },
 
   mounted() {
+    // Get the topic for navigation component
+    this.$axios({
+      method: "get",
+      url: `/category`
+    }).then(response => {
+      let data = response.data;
+
+      if (data.type === "success") {
+        this.navInfo = data.data.navInfo;
+      } else {
+        this.$store.commit("trigger", {
+          title: data.errorMsg,
+          type: "danger"
+        });
+      }
+    });
+
     // Get the blogs information by given typeName
     this.$axios({
       method: "get",
@@ -95,7 +89,10 @@ export default {
       if (data.type === "success") {
         this.blogs = data.data.blogItems;
       } else {
-        console.error("error");
+        this.$store.commit("trigger", {
+          title: data.errorMsg,
+          type: "danger"
+        });
       }
     });
     this.isLoading = false;

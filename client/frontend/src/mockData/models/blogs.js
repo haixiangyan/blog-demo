@@ -1,7 +1,7 @@
 import Mock from 'mockjs';
 
 export const blogs = [{
-    path: /\/blogs\?typeName=[A-Za-z0-9%]*/,
+    path: /\/blogs[\?typeName=[A-Za-z0-9%]*]?/,
     type: 'get',
     data() {
       let result = {

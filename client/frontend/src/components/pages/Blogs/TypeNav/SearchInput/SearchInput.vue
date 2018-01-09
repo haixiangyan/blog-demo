@@ -16,7 +16,7 @@ export default {
     return {
       isValid: true,
       isShow: false,
-      keyword: "Input keyword"
+      keyword: "Keyword"
     };
   },
 

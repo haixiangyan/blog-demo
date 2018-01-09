@@ -11,7 +11,7 @@ User inputs his email and hit submit button to subscribe the blog.
 
 ### Request Body
 
-```
+```js
 {
   subscribeForm: {
     email: 'haixiang6123@gmail.com'
@@ -23,7 +23,7 @@ User inputs his email and hit submit button to subscribe the blog.
 
 #### Success
 
-```
+```js
 {
   type: 'success'
 }
@@ -31,7 +31,7 @@ User inputs his email and hit submit button to subscribe the blog.
 
 #### Fail
 
-```
+```js
 {
   type: 'fail'
   errorMsg: 'There is something wrong there.'
@@ -49,7 +49,7 @@ User inputs his email and hit submit button to put a suggestion of the blog.
 
 ### Request Body
 
-```
+```js
 {
   contactForm: {
     name: 'Haixiang',
@@ -64,7 +64,7 @@ User inputs his email and hit submit button to put a suggestion of the blog.
 
 #### Success
 
-```
+```js
 {
   type: 'success'
 }
@@ -72,7 +72,7 @@ User inputs his email and hit submit button to put a suggestion of the blog.
 
 #### Fail
 
-```
+```js
 {
   type: 'fail'
   errorMsg: 'There is something wrong there.'
@@ -98,7 +98,7 @@ To get blog items by given type name (allPost, life, coding). Number 1 is for li
 
 #### Success
 
-```
+```js
 {
   type: 'success',
   data: {
@@ -128,7 +128,7 @@ To get blog items by given type name (allPost, life, coding). Number 1 is for li
 
 #### Fail
 
-```
+```js
 {
   type: 'fail'
   errorMsg: 'There is something wrong there.'
@@ -154,7 +154,7 @@ To get a blog by given author name and blog ID.
 
 #### Success
 
-```
+```js
 {
   type: 'success',
   data: {
@@ -182,7 +182,66 @@ To get a blog by given author name and blog ID.
 
 #### Fail
 
+```js
+{
+  type: 'fail'
+  errorMsg: 'There is something wrong there.'
+}
 ```
+
+
+## Category
+
+To get types and topics of all blogs.
+
+| Key | Value |
+|:---:|:---:|
+| URL | /category |
+| Method | Get |
+
+### Request
+
+None.
+
+### Response Body
+
+#### Success
+
+```js
+{
+  type: 'success',
+  data: {
+      navInfo: [
+        {
+          title: "Coding",
+          subNav: [
+            {
+              topic: Mock.Random.title(2, 5)
+            },
+            {
+              topic: Mock.Random.title(2, 5)
+            }
+          ]
+        },
+        {
+          title: "Life",
+          subNav: [
+            {
+              topic: Mock.Random.title(2, 5)
+            },
+            {
+              topic: Mock.Random.title(2, 5)
+            }
+          ]
+        }
+      ]
+  }
+}
+```
+
+#### Fail
+
+```js
 {
   type: 'fail'
   errorMsg: 'There is something wrong there.'

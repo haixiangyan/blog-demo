@@ -66,7 +66,7 @@ export default {
 }
 
 .trigger {
-  animation: 3s show;
+  animation: 5s show;
 }
 
 /* container style */

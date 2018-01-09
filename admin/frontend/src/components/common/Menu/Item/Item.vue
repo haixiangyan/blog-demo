@@ -20,7 +20,7 @@ export default {
         title: '',
         icon: '',
         link: '',
-        blogs: []
+        topics: []
       }
     }
   },

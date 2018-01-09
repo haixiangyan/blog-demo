@@ -60,13 +60,13 @@ export default {
   }
 
   100% {
-    opacity: 0;;
+    opacity: 0;
     right: 0%;
   }
 }
 
 .trigger {
-  animation: 3s show;
+  animation: 5s show;
 }
 
 /* container style */

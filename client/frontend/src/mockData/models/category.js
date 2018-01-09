@@ -2,29 +2,21 @@ import Mock from 'mockjs';
 
 export const category = [
   {
-    path: '/blogCategory',
+    path: '/category',
     type: 'get',
     data() {
-
       let result = {
         type: 'success',
         data: {
           navInfo: [
             {
-              title: "All Post",
-              subNav: [
-              ]
-            },
-            {
               title: "Coding",
               subNav: [
                 {
-                  title: "Front end blogs",
-                  link: "/"
+                  topic: Mock.Random.title(2, 5)
                 },
                 {
-                  title: "Back end blogs",
-                  link: "/"
+                  topic: Mock.Random.title(2, 5)
                 }
               ]
             },
@@ -32,12 +24,10 @@ export const category = [
               title: "Life",
               subNav: [
                 {
-                  title: "Life in China",
-                  link: "/"
+                  topic: Mock.Random.title(2, 5)
                 },
                 {
-                  title: "Life in UCI",
-                  link: "/"
+                  topic: Mock.Random.title(2, 5)
                 }
               ]
             }
