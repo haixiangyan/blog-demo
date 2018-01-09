@@ -19,6 +19,7 @@ export const blog = [{
         publishDate: Mock.Random.date('MM - dd'),
         publishTime: Mock.Random.time('HH : mm'),
         blogTitle: Mock.Random.title(),
+        blogTopic: Mock.Random.title(),
         blogContent: Mock.Random.paragraph(),
         timeStamp: new Date().getTime() + Mock.Random.natural(1, 200)
       },

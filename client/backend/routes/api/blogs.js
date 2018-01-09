@@ -14,20 +14,11 @@ router.get('/', function (req, res, next) {
   // Get type name
   let typeName = req.query.typeName ? req.query.typeName : 'allPost';
 
-  // Define sql
-  let sql = `select * from blog, author where b_type = ${typeName} and b_author_name = a_name`;
+  let typeNameCondition = req.query.typeName ? `and b_type="${req.query.typeName}"` : '';
+  let topicCondition = req.query.topic ? `and b_topic="${req.query.topic}"` : '';
 
-  switch (typeName) {
-    case 'Life':
-      typeName = 1;
-      break;
-    case 'Coding':
-      typeName = 2;
-      break;
-    case 'allPost':
-    default:
-      sql = `select * from blog, author where b_author_name = a_name`;
-  }
+  // Define sql
+  let sql = `select * from blog, author where b_author_name = a_name ${typeNameCondition} ${topicCondition}`;
 
   // Select data into database
   pool.getConnection((err, connection) => {

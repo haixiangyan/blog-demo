@@ -1,6 +1,6 @@
 <template>
   <div>
-      <router-link v-if="isLink" :to="`/blog/${blogItem.authorInfo.author}/${blogItem.blogInfo.timeStamp}`" class="blog-link-content-container">
+      <router-link target = "_blank" v-if="isLink" :to="`/blog/${blogItem.authorInfo.author}/${blogItem.blogInfo.timeStamp}`" class="blog-link-content-container">
         <div class="blog-title title-font-size main-font-color">
           {{blogItem.blogInfo.blogTitle}}
         </div>

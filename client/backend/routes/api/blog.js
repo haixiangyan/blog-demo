@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var pool = require('../../db/config');
+var datetimeUtils = require('../../utils/datetime');
 
 /**
  * To get the information of a blog by given author name and blog ID
@@ -9,7 +10,7 @@ var pool = require('../../db/config');
 router.get('/', function (req, res, next) {
   let result = {
     type: 'success',
-    data: {}
+    data: {blogItem: {}}
   };
 
   // Get author name and blog ID
@@ -66,7 +67,7 @@ router.get('/', function (req, res, next) {
           author: resultItem.a_name,
         },
         blogInfo: {
-          publishDate: `${datetimeUtils.monthMap[new Date(blogItem.b_id).getMonth()+1]} - ${new Date(resultItem.b_id).getDate()}`,
+          publishDate: `${datetimeUtils.monthMap[new Date(resultItem.b_id).getMonth()+1]} - ${new Date(resultItem.b_id).getDate()}`,
           publishTime: `${new Date(resultItem.b_id).getHours()} : ${new Date(resultItem.b_id).getMinutes()}`,
           blogTitle: resultItem.b_title,
           blogContent: resultItem.b_content,

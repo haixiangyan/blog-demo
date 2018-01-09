@@ -31,7 +31,7 @@ export default {
     // send request to get blog item data
     this.$axios({
       method: 'get',
-      url: '/blogs?typeName=recent'
+      url: '/blogs'
     })
     .then((response) => {
       // set Loading as false

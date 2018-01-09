@@ -1,8 +1,5 @@
 <template>
   <div class="blog-page-container">
-    <!-- type navigation -->
-    <blog-type-nav class="blog-type-nav-comp light-blue-bg" @chooseType="chooseType" @search="displayResult" :navInfo="navInfo"></blog-type-nav>
-
     <!-- blog item -->
     <div class="blog-item-container white-bg">
 
@@ -20,7 +17,6 @@
 </template>
 
 <script>
-import BlogTypeNav from "@/components/pages/Blogs/TypeNav/TypeNav";
 import BlogItem from "@/components/pages/BlogPage/BlogItem/BlogItem";
 import BlogEmpty from "@/components/common/Empty/Empty";
 import BlogLoading from "@/components/common/Loading/Loading";
@@ -85,7 +81,6 @@ export default {
   },
 
   components: {
-    BlogTypeNav,
     BlogItem,
     BlogLoading,
     BlogEmpty

@@ -33,12 +33,10 @@ export default {
           title: "Coding",
           subNav: [
             {
-              title: "Front end blogs",
-              link: "/"
+              topic: "Front end blogs"
             },
             {
-              title: "Back end blogs",
-              link: "/"
+              topic: "Back end blogs"
             }
           ]
         },
@@ -46,12 +44,10 @@ export default {
           title: "Life",
           subNav: [
             {
-              title: "Life in China",
-              link: "/"
+              topic: "Life in China"
             },
             {
-              title: "Life in UCI",
-              link: "/"
+              topic: "Life in UCI"
             }
           ]
         }
@@ -89,56 +85,19 @@ export default {
   },
 
   mounted() {
-    // Get the type of blogs
-    let typeName = this.$route.query.typeName;
-    let keyword = this.$route.query.keyword;
+    // Get the blogs information by given typeName
+    this.$axios({
+      method: "get",
+      url: `/blogs`
+    }).then(response => {
+      let data = response.data;
 
-    this.isLoading = true;
-
-    if (keyword) {
-      // Get the blogs information by searching keyword
-      this.$axios({
-        method: "get",
-        url: `/search?q=${keyword}`
-      }).then(response => {
-        let data = response.data;
-
-        if (data.type === "success") {
-          this.blogs = data.data.blogItems;
-        } else {
-          console.error("error");
-        }
-      });
-    } else if (typeName) {
-      // Get the blogs information by given typeName
-      this.$axios({
-        method: "get",
-        url: `/blogs?typeName=${typeName}`
-      }).then(response => {
-        let data = response.data;
-
-        if (data.type === "success") {
-          this.blogs = data.data.blogItems;
-        } else {
-          console.error("error");
-        }
-      });
-    } else {
-      // Get the blogs information by given typeName
-      this.$axios({
-        method: "get",
-        url: `/blogs?typeName=allPost`
-      }).then(response => {
-        let data = response.data;
-
-        if (data.type === "success") {
-          this.blogs = data.data.blogItems;
-        } else {
-          console.error("error");
-        }
-      });
-    }
-
+      if (data.type === "success") {
+        this.blogs = data.data.blogItems;
+      } else {
+        console.error("error");
+      }
+    });
     this.isLoading = false;
   }
 };

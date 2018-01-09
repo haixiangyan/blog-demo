@@ -12,9 +12,9 @@
     <!-- sub nav container -->
     <transition enter-active-class="fadeInDown" leave-active-class="fadeOut">
       <div v-show="isShow" class="animated sub-nav-container">
-        <router-link :to="`/blogs?typeName=${subNavItem.title}`" tag="div"  class="sub-nav-item" v-for="subNavItem in navItemInfo.subNav" :key="subNavItem.title" @click="search(subNavItem.title)">
-          {{subNavItem.title}}
-        </router-link>
+        <div class="sub-nav-item" v-for="subNavItem in navItemInfo.subNav" :key="subNavItem.title" @click="search(navItemInfo.title, subNavItem.topic)">
+          {{subNavItem.topic}}
+        </div>
       </div>
     </transition>
   </div>
@@ -26,7 +26,7 @@ export default {
     navItemInfo: {
       type: Object,
       default: {
-        title: '',
+        topic: '',
         subNav: []
       }
     }
@@ -43,13 +43,15 @@ export default {
       this.isShow = !this.isShow;
     },
 
-    search(title) {
+    search(title, topic) {
       let result = '';
+
+      console.log(`/blogs?typeName=${title}&topic=${topic}`)
 
       // send request to search keyword
       this.$axios({
         method: 'get',
-        url: `/blogItems/typeName=${title}`
+        url: `/blogs?typeName=${title}&topic=${topic}`
       })
       .then((response) => {
         let data = response.data;

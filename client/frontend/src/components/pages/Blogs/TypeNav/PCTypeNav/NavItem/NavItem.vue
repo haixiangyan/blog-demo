@@ -9,8 +9,8 @@
     <!-- sub nav container -->
     <transition name="fade">
       <div v-show="isShow" @mouseleave="hide" class="sub-nav-container">
-        <div v-for="subNavItem in navItemInfo.subNav" :key="subNavItem.title" @click="search(subNavItem.title)" class="sub-nav-item">
-          {{subNavItem.title}}
+        <div v-for="subNavItem in navItemInfo.subNav" :key="subNavItem.title" @click="search(navItemInfo.title, subNavItem.topic)" class="sub-nav-item">
+          {{subNavItem.topic}}
         </div>
       </div>
     </transition>
@@ -21,10 +21,15 @@
 <script>
 export default {
   props: {
+    title: {
+      type: String,
+      default: '',
+    },
     navItemInfo: {
       type: Object,
       default: {
         title: '',
+        topic: '',
         subNav: []
       }
     }
@@ -45,13 +50,13 @@ export default {
       this.isShow = false;
     },
 
-    search(title) {
+    search(title, topic) {
       let result = '';
 
       // send request to search keyword
       this.$axios({
         method: 'get',
-        url: `/blogs?typeName=${title}`
+        url: `/blogs?typeName=${title}&topic=${topic}`
       })
       .then((response) => {
         let data = response.data;
@@ -64,7 +69,7 @@ export default {
         }
       })
     }
-  }
+  },
 }
 </script>
 

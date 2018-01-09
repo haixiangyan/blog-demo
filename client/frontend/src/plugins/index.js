@@ -10,7 +10,7 @@ import '@/assets/libs/font-awesome-4.7.0/css/font-awesome.min.css';
 import '@/assets/libs/Animate/animate.css';
 
 // Import mockjs
-import '../mockData';
+// import '../mockData';
 
 // Import vuex
 import '../store';

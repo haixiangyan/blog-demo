@@ -9,9 +9,6 @@ Vue.config.productionTip = false;
 // import plugins
 import './plugins';
 
-// import mock data
-import './mockData';
-
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
