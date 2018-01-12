@@ -12,9 +12,6 @@ import '@/assets/libs/Animate/animate.css';
 // Import mockjs
 import '../mockData';
 
-// Import vuex
-import '../store';
-
 // Import axios and set it as global variable
 import axios from 'axios';
 import Vue from 'vue';

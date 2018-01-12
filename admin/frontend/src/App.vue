@@ -6,22 +6,41 @@
     <!-- admin menu -->
     <admin-menu></admin-menu>
 
-    <router-view class="content"/>
+    <!-- notification -->
+    <blog-notification :title="title" :type="type" :isShow="isShow"></blog-notification>
+
+    <!-- page router view -->
+    <transition enter-active-class="fadeIn" leave-active-class="fadeOut">
+      <router-view class="animated content"/>
+    </transition>
   </div>
 </template>
 
 <script>
-import AdminMenu from '@/components/common/Menu/Menu';
-import AdminHeader from '@/components/common/Header/Header';
+import { mapState } from "vuex";
+
+import AdminMenu from "@/components/common/Menu/Menu";
+import AdminHeader from "@/components/common/Header/Header";
+import BlogNotification from "@/components/common/Notification/Notification";
+
 
 export default {
-  name: 'app',
+  name: "app",
+
+  computed: {
+    ...mapState({
+      isShow: state => state.notification.isShow,
+      title: state => state.notification.title,
+      type: state => state.notification.type
+    })
+  },
 
   components: {
     AdminMenu,
-    AdminHeader
-  }
-}
+    AdminHeader,
+    BlogNotification
+  },
+};
 </script>
 
 <style>

@@ -1,9 +1,9 @@
 import Mock from 'mockjs';
 
-import { home } from './models/home';
+import { category } from './models/category';
 
 let data = [].concat(
-  home,
+  category,
 )
 
 data.forEach((res) => {

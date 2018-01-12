@@ -13,42 +13,37 @@
 </template>
 
 <script>
-import AdminMenuItem from '@/components/common/Menu/Item/Item';
+import AdminMenuItem from "@/components/common/Menu/Item/Item";
 
 export default {
   data() {
     return {
-      menu: [
-        {
-          title: "Coding",
-          icon: "fa fa-laptop",
-          types: [
-            {
-              typeName: "Frontend",
-            },
-            {
-              typeName: "Backend",
-            }
-          ]
-        },
-        {
-          title: "Life",
-          icon: "fa fa-bath",
-          types: [
-            {
-              typeName: "Life in China",
-            },
-            {
-              typeName: "Life in UCI",
-            }
-          ]
-        }
-      ]
+      menu: []
     };
   },
 
   components: {
     AdminMenuItem
+  },
+
+  mounted() {
+    // Get the information of menu
+    this.$axios({
+      method: "get",
+      url: "/category"
+    }).then(response => {
+      let data = response.data;
+
+      if (data.type === "success") {
+        this.menu = data.data.menu;
+      } else {
+        // throw an error message
+        this.$store.commit("trigger", {
+          title: data.errorMsg ? data.errorMsg : "OFF~ Something goes wrong :(",
+          type: "danger"
+        });
+      }
+    });
   }
 };
 </script>
