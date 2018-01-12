@@ -13,9 +13,9 @@
             </div>
 
             <form class="contact-form">
-              <blog-input name="name" :required="true" @validation="handleValidation" v-model="contactForm.name" class="input-item" placeholder="Name"></blog-input>
-              <blog-input name="email" :required="true" @validation="handleValidation" v-model="contactForm.email" type="email" class="input-item" placeholder="Email"></blog-input>
-              <blog-input name="subject" :required="true" @validation="handleValidation" v-model="contactForm.subject" class="input-item" placeholder="Subject"></blog-input>
+              <blog-input :width="450" name="name" :required="true" @validation="handleValidation" v-model="contactForm.name" class="input-item" placeholder="Name"></blog-input>
+              <blog-input :width="450" name="email" :required="true" @validation="handleValidation" v-model="contactForm.email" type="email" class="input-item" placeholder="Email"></blog-input>
+              <blog-input :width="450" name="subject" :required="true" @validation="handleValidation" v-model="contactForm.subject" class="input-item" placeholder="Subject"></blog-input>
 
               <blog-textarea name="message" @validation="handleValidation" :required="true" v-model="contactForm.message" class="input-item" placeholder="Message" :rows="5"></blog-textarea>
             </form>
@@ -96,7 +96,7 @@ export default {
         let data = response.data;
         if(data.type === 'success') {
           this.$store.commit("trigger", {
-            title: `Thank you for sending me your suggestion :)`,
+            title: `Suggestion is sent`,
             type: "success"
           });
         }

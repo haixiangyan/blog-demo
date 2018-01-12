@@ -87,7 +87,7 @@ export default {
 
         if (data.type === "success") {
           this.$store.commit("trigger", {
-            title: `Thank you for your subscription :)`,
+            title: `Subscribed`,
             type: "success"
           });
         } else {
