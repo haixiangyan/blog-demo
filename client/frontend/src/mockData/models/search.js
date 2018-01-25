@@ -17,7 +17,7 @@ export const search = [{
       let blogItem = {
         imgSrc: `/static/img/blogs/blog_${i}.jpg`,
         authorInfo: {
-          avatar: "/static/img/utils/avatar.jpg",
+          avatar: "/static/img/utils/avatar_76.jpg",
           author: "HaixiangYan",
         },
         blogInfo: {

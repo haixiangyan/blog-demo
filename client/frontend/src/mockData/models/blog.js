@@ -12,7 +12,7 @@ export const blog = [{
     let blogItem = {
       imgSrc: `/static/img/blogs/blog_${Mock.Random.natural(1, 3)}.jpg`,
       authorInfo: {
-        avatar: "/static/img/utils/avatar.jpg",
+        avatar: "/static/img/utils/avatar_76.jpg",
         author: "HaixiangYan",
       },
       blogInfo: {
