@@ -37,7 +37,7 @@ export default {
   data() {
     return {
       contactIntro: {
-        introImg: '/static/img/contact/contact.jpg',
+        introImg: '/static/img/contact/contact_me.jpg',
         introContent: `Want to give some suggestion to me? Fill in the form and hit the Send button to let me know your awesome ideas. I'll try all my best to improve my blog :)`
       },
       contactForm: {

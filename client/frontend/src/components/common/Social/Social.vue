@@ -42,8 +42,8 @@
 export default {
   data() {
     return {
-      qqQrSrc: '/static/img/social/qq_qr.jpg',
-      wechatQrSrc: '/static/img/social/wechat_qr.jpg',
+      qqQrSrc: '/static/img/social/qq.jpg',
+      wechatQrSrc: '/static/img/social/wechat.jpg',
       linkedinAddr: 'https://www.linkedin.com/in/%E6%B5%B7%E7%BF%94-%E4%B8%A5-0b9744150/',
       fbAddr: 'https://www.facebook.com/yan.haixiang',
       twitterAddr: 'https://twitter.com/HaixiangYan',

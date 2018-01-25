@@ -30,7 +30,7 @@ export default {
         I have rich experience of using JavaScript, HTML 5, CSS 3. I'm also famliar with using Vue.js, webpack and es6.
         
         I love playing Guitar and computer games. One of my faviorite games is Overwatch, and I am really good at widow :) You can join me any time. I'm so happy to play with you. `,
-        introImg: "/static/img/about/intro.jpg"
+        introImg: "/static/img/about/me.jpg"
       }
     };
   },
